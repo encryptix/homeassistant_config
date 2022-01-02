@@ -1,0 +1,33 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+# https://www.home-assistant.io/integrations/default_config/
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+homeassistant:
+  name: !secret ha_name
+  latitude: !secret my_latitude
+  longitude: !secret my_longitude
+  elevation: !secret my_elevation
+  currency: !secret my_currency
+  time_zone: !secret my_time_zone
+  unit_system: Metric
+  # Needed for https://www.home-assistant.io/integrations/google_assistant
+  # external_url: !secret my_external_url
+  internal_url: !secret my_internal_url
+
+wake_on_lan:
+media_player:
+
+logger: !include logger.yaml
+
+sensor: !include_dir_merge_list sensor
+
+notify: !include_dir_merge_list notify
