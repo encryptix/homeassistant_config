@@ -1,0 +1,15 @@
+- name: !secret notify__user_a_name
+  platform: rest
+  resource: https://api.callmebot.com/whatsapp.php
+  data:
+    source: HA
+    phone: !secret notify__user_a_phone
+    apikey: !secret notify__user_a_apikey
+
+- name: !secret notify__user_b_name
+  platform: rest
+  resource: https://api.callmebot.com/whatsapp.php
+  data:
+    source: HA
+    phone: !secret notify__user_b_phone
+    apikey: !secret notify__user_b_apikey
