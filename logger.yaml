@@ -1,10 +1,10 @@
 # Log Severities: notset, debug, info, warn, warning, error, fatal, critical
 
-default: debug
+default: info
 logs:
   custom_components.hacs: error
   hacs: error
-  # homeassistant.core: error
+  homeassistant.core: debug
   # homeassistant.config_entries: error
   # homeassistant.components.automation: warn
   # homeassistant.components.binary_sensor: error
@@ -29,3 +29,5 @@ logs:
   # py.warnings: error
   urllib3.connectionpool: error
   requests.packages.urllib3.connectionpool: critical
+  custom_components.pyscript: debug
+
