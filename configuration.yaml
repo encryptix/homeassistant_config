@@ -20,14 +20,36 @@ homeassistant:
   time_zone: !secret my_time_zone
   unit_system: Metric
   # Needed for https://www.home-assistant.io/integrations/google_assistant
-  # external_url: !secret my_external_url
+  external_url: !secret my_external_url
   internal_url: !secret my_internal_url
+
+http:
+  server_port: !secret http_port
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
+
+logger: !include logger.yaml
+sensor: !include_dir_merge_list sensor
+notify: !include_dir_merge_list notify
 
 wake_on_lan:
 media_player:
 
-logger: !include logger.yaml
+webostv:
+  - name: !secret webos_tv_a_name
+    host: !secret webos_tv_a_ip
+    turn_on_action:
+      service: wake_on_lan.send_magic_packet
+      data:
+        mac: !secret webos_tv_a_mac
+        broadcast_address: !secret network_mask
 
-sensor: !include_dir_merge_list sensor
-
-notify: !include_dir_merge_list notify
+  - name: !secret webos_tv_b_name
+    host: !secret webos_tv_b_ip
+    turn_on_action:
+      service: wake_on_lan.send_magic_packet
+      data:
+        mac: !secret webos_tv_b_mac
+        broadcast_address: !secret network_mask
