@@ -1,2 +1,7 @@
 secrets.yaml
 .ssh
+filebrowser_data
+.HA_VERSION
+home-assistant.log*
+home-assistant_v2*
+webostv.conf
