@@ -1,0 +1,22 @@
+- id: '1641671485152'
+  alias: 'Cat Food : Count & Notifier'
+  description: ''
+  trigger:
+  - platform: time
+    at: '15:00:00'
+  condition: []
+  action:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.cat_food_remaining
+    data:
+      value: '{{ (states(''input_number.cat_food_remaining'') | float) - (states(''input_number.cat_food_daily_use'')
+        | float) }}'
+  - condition: numeric_state
+    entity_id: sensor.cat_food_days_remaining
+    below: input_number.cat_food_notification_days
+  - service: persistent_notification.create
+    data:
+      title: Cat Food Reminder
+      message: Consider ordering cat food
+  mode: single

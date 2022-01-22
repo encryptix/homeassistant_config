@@ -1,0 +1,9 @@
+- name: "Cat Food : Days Remaining"
+  unit_of_measurement: "Days"
+  # step: 1.0
+  unique_id: cat_food_days_remaining
+  state: >
+    {% set food_remain = states('input_number.cat_food_remaining') | int %}
+    {% set use_per_day = states('input_number.cat_food_daily_use') | int %}
+
+    {{ (food_remain / use_per_day) | round(0, "floor", 0) }}
