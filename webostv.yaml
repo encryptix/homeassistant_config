@@ -1,0 +1,15 @@
+- name: !secret webos_tv_a_name
+  host: !secret webos_tv_a_ip
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: !secret webos_tv_a_mac
+      broadcast_address: !secret network_mask
+
+- name: !secret webos_tv_b_name
+  host: !secret webos_tv_b_ip
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: !secret webos_tv_b_mac
+      broadcast_address: !secret network_mask
